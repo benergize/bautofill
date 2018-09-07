@@ -1,2 +1,2 @@
 # bautofill
-Very simple Javascript autocomplete/autofill library for input fields.
+A very easy to use Javascript autocomplete/autofill library for input fields.
