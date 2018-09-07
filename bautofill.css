@@ -1,0 +1,10 @@
+.autoCompleteList {
+	list-style:none; 
+	padding:0px;
+	width:200px;
+	position:absolute;
+	z-index:1
+}
+.autoCompleteItem { cursor:pointer; } 
+.autoCompleteItem { margin:0px; }
+.autoCompleteItem:hover { background:white; }
