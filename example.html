@@ -1,0 +1,35 @@
+<html>
+	<head>
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<script src = 'bautofill.js'></script>
+		<link rel = 'stylesheet' href = 'bautofill.css'>
+
+	</head>
+	<body>
+
+		<p>To make a bautofill textbox, give it the 'bautoCommpleteInput' class!</p><br/>
+
+		Data in HTML: <input type = 'text' class = 'bautoCompleteInput' data-filler='["Apples","Oranges","Eggplant","Bananas"]'>
+		
+		<br/> 
+		
+		Data from JS: <input type = 'text' class = 'bautoCompleteInput' id = 'dataInVariable' data-filler=''> 
+		
+		<script>
+		
+			document.getElementById('dataInVariable').dataset['filler'] = '["New York","Wisconsin","Nevada","Arizona","Mississippi"]';
+			
+			//Get creative and set the variable using AJAX!
+		</script>
+
+		<p>Above are two examples of bautofill text boxes. The data from the text boxes is populated from JSON arrays of strings. In the case of the top example, this is provided directly in the HTML. The bottom is provided via JavaScript. You can of course populate these lists using AJAX! </p>
+
+		<script>
+
+			
+		</script> 
+	</body>
+</html>

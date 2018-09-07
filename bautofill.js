@@ -3,21 +3,24 @@ $( document ).ready(function() {
 
 	
 	//Create lists underneath the text elements
-	if(document.getElementsByClassName('autoCompleteInput').length > 0) {
+	if(document.getElementsByClassName('bautoCompleteInput').length > 0) {
 
 	
 
-		var autoCompletes = document.getElementsByClassName('autoCompleteInput');
+		var autoCompletes = document.getElementsByClassName('bautoCompleteInput');
 		
 		for(var v = 0; v < autoCompletes.length; v++) {
 		
 		
 		
-			var autoCompleteList = document.createElement("ul");
-			autoCompleteList.className = 'autoCompleteList';
-			autoCompleteList.id = autoCompletes[v].id + "-list";
+			var bautoCompleteList = document.createElement("ul");
+			bautoCompleteList.className = 'bautoCompleteList';
+			bautoCompleteList.id = autoCompletes[v].id + "-list";
 			
-			autoCompletes[v].insertAdjacentHTML("afterend",autoCompleteList.outerHTML)
+			bautoCompleteList.style['margin-left'] = autoCompletes[v].offsetLeft-8+autoCompletes[v].scrollLeft;
+			bautoCompleteList.style['width'] = autoCompletes[v].clientWidth
+			
+			autoCompletes[v].insertAdjacentHTML("afterend",bautoCompleteList.outerHTML)
 		}
 	}
 
@@ -25,19 +28,24 @@ $( document ).ready(function() {
 
 	menuHasFocus = false;
 	 
-	$(".autoCompleteInput").keydown(function(e) { displayMenu(this,e); });
-	$(".autoCompleteInput").keyup(function(e) { displayMenu(this,e); }); 
-	$(".autoCompleteInput").focusout(function(e) { closeTheMenu(this); } );
+	$(".bautoCompleteInput").keydown(function(e) { displayMenu(this,e); });
+	$(".bautoCompleteInput").keyup(function(e) { displayMenu(this,e); }); 
+	$(".bautoCompleteInput").focusout(function(e) { closeTheMenu(this); } );
 	 
 
 	function closeTheMenu(element) {
-		if(menuHasFocus == false) { document.getElementById(element.id+"-list").innerHTML = "";  }
+		if(menuHasFocus == false) { 
+			document.getElementById(element.id+"-list").innerHTML = ""; 
+			document.getElementById(element.id+"-list").style["visibility"] = "hidden"; 
+		}
 		
 	}
 	 
 	function displayMenu(selectedTextBox,ev) {
 		
-		autoCompleteData = JSON.parse(selectedTextBox.dataset['filler']); 
+		var thisDataSet = selectedTextBox.dataset['filler']; 
+		autoCompleteData = JSON.parse(thisDataSet); 
+		
 
 		//Exit the field if the user pressed enter
 		var keycode = (ev.keyCode ? ev.keyCode : ev.which);
@@ -46,6 +54,7 @@ $( document ).ready(function() {
 
 		var fieldValue = selectedTextBox.value;
 		var thisList = document.getElementById(selectedTextBox.id + "-list");
+		thisList.style["visibility"] = "visible";
 		
 		
 		thisList.innerHTML = "";
@@ -59,7 +68,7 @@ $( document ).ready(function() {
 				var newNode = document.createElement("li");
 
 				newNode.name = autoCompleteData[v];
-				newNode.className = "well well-sm autoCompleteItem"; 
+				newNode.className = "bautoCompleteItem"; 
 				newNode.style['width'] = selectedTextBox.style['width'];
 
 				newNode.onclick = function(){
@@ -67,8 +76,8 @@ $( document ).ready(function() {
 					selectedTextBox.focus(); 
 					selectedTextBox.value = this.name; 
 					
-					for(var v = 0; v < document.getElementsByClassName("autoCompleteList").length; v++) {
-						document.getElementsByClassName("autoCompleteList")[v].innerHTML = "";
+					for(var v = 0; v < document.getElementsByClassName("bautoCompleteList").length; v++) {
+						document.getElementsByClassName("bautoCompleteList")[v].innerHTML = "";
 					}
 				} 
 				
