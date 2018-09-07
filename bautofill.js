@@ -5,13 +5,10 @@ $( document ).ready(function() {
 	//Create lists underneath the text elements
 	if(document.getElementsByClassName('bautoCompleteInput').length > 0) {
 
-	
 
 		var autoCompletes = document.getElementsByClassName('bautoCompleteInput');
 		
 		for(var v = 0; v < autoCompletes.length; v++) {
-		
-		
 		
 			var bautoCompleteList = document.createElement("ul");
 			bautoCompleteList.className = 'bautoCompleteList';
