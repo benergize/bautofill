@@ -1,4 +1,3 @@
-
 $( document ).ready(function() {
 
 	
@@ -75,6 +74,7 @@ $( document ).ready(function() {
 					
 					for(var v = 0; v < document.getElementsByClassName("bautoCompleteList").length; v++) {
 						document.getElementsByClassName("bautoCompleteList")[v].innerHTML = "";
+						document.getElementsByClassName("bautoCompleteList")[v].style['visibility'] = "hidden";
 					}
 				} 
 				
