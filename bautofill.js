@@ -26,7 +26,7 @@ $( document ).ready(function() {
 	 
 	$(".bautoCompleteInput").keydown(function(e) { displayMenu(this,e); });
 	$(".bautoCompleteInput").keyup(function(e) { displayMenu(this,e); }); 
-	$(".bautoCompleteInput").focusout(function(e) { closeTheMenu(this); } );
+	$(".bautoCompleteInput").blur(function(e) { closeTheMenu(this); } );
 	 
 
 	function closeTheMenu(element) {
@@ -40,8 +40,10 @@ $( document ).ready(function() {
 	function displayMenu(selectedTextBox,ev) {
 		
 		var thisDataSet = selectedTextBox.dataset['filler']; 
-		autoCompleteData = JSON.parse(thisDataSet); 
 		
+		try {
+			autoCompleteData = JSON.parse(thisDataSet); 
+		} catch(e) { autoCompleteData = [e]; }
 
 		//Exit the field if the user pressed enter
 		var keycode = (ev.keyCode ? ev.keyCode : ev.which);
