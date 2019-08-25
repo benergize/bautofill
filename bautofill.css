@@ -1,13 +1,15 @@
-.bautoCompleteList {
-	list-style:none; 
-	padding:0px; 
-	margin:0px;
-	position:absolute;
-	z-index:1; 
-	visibility:hidden;
-
-	border:1px inset gray; 
-	background:white;
+#bautofill_dropDown { 
+	background: white;
+	border: 1px solid black; 
 }
-.bautoCompleteItem { margin:0px; cursor:pointer;  }  
-.bautoCompleteItem:hover { background: ghostwhite; }
+.bautofill_listItem {
+	list-style: none;
+}
+.bautofill_listItem:hover {
+	background: ghostwhite;
+	cursor:pointer;
+}
+.bautofill_dropDownList {
+	margin:0px;
+	padding:0px;
+}
