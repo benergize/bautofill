@@ -12,6 +12,8 @@ function bautofill_doDrop(el) {
 	
 	let foundMatch = false; 
 	let oldDropdown = document.getElementById("bautofill_dropDown");
+
+	let multi = el.dataset.multi;
 	
 	if(oldDropdown !== null) { oldDropdown.remove(); }
 	
@@ -21,6 +23,8 @@ function bautofill_doDrop(el) {
 	dropDownArea.style.top = el.offsetTop + el.offsetHeight + "px";
 	dropDownArea.style.left = el.offsetLeft + "px";
 	dropDownArea.style.width = el.offsetWidth-2 + "px"; 
+	dropDownArea.dataset.multi = multi;
+	
 	
 	let dropDownList = document.createElement("ul");
 	dropDownList.classList.add("bautofill_dropDownList");
@@ -33,11 +37,14 @@ function bautofill_doDrop(el) {
 			foundMatch = true;
 			
 			let listItem = document.createElement("li");
-			listItem.innerHTML = item; 
+			listItem.dataset.multi = multi;
+			
+			listItem.innerHTML = (multi ? `<div class = 'bautofill-checkbox' data-value = ${item}> </div>` : "") +item; 
+			
 			listItem.classList.add("bautofill_listItem");
 			listItem.addEventListener("mousedown", ev => {
-			
-				el.value = item;
+				if(multi) { listItem.querySelector(`.bautofill-checkbox`).classList.toggle("checked") }
+				el.value = multi ? Array.from(document.querySelectorAll(".bautofill-checkbox")).filter(e=>{return e.classList.contains("checked")}).map(e=>{return e.dataset.value}) : item;
 			});
 			
 			dropDownArea.getElementsByTagName("ul")[0].appendChild(listItem);
@@ -60,8 +67,9 @@ Array.from(document.getElementsByClassName('bautofill')).forEach(el => {
 	el.addEventListener("blur", ev => {
 		
 		let oldDropdown = document.getElementById("bautofill_dropDown");
-		if(oldDropdown !== null) { oldDropdown.remove(); }
+		if(oldDropdown !== null && !oldDropdown.dataset.multi) { oldDropdown.remove(); }
 	});
+
 	
 	
 });

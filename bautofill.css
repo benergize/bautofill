@@ -1,6 +1,7 @@
 #bautofill_dropDown { 
 	background: white;
 	border: 1px solid black; 
+	color: black;
 }
 .bautofill_listItem {
 	list-style: none;
@@ -12,4 +13,22 @@
 .bautofill_dropDownList {
 	margin:0px;
 	padding:0px;
+}
+.bautofill-checkbox {
+	width: 12px;
+	height:12px ;
+	border:1px solid gray;
+	margin:1px 6px;
+	display:inline-block;
+	vertical-align: center;
+}
+.bautofill-checkbox.checked {
+	background:lightgray;
+}
+.bautofill-checkbox.checked:before {  
+	content: '✓';
+  font-size: .75rem;
+  margin-top: -.124rem;
+  display: block;
+  margin-left: 1px;
 }
